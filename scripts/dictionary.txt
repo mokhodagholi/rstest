@@ -1,7 +1,6 @@
 # Custom Dictionary Words
 acked
 acks
-ACMRTUXB
 AIMD
 antd
 apng

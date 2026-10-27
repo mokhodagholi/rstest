@@ -1,0 +1,12 @@
+{
+  "name": "@examples/related-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "reproduce": "node scripts/reproduce.mjs",
+    "test": "rstest run"
+  },
+  "devDependencies": {
+    "@rstest/core": "workspace:*"
+  }
+}

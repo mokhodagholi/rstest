@@ -93,6 +93,10 @@ npx rstest list --related src/button.ts --filesOnly
 
 `--related` 和 `--findRelatedTests` 不支持在 watch 模式下使用，watch 模式本身已经会重跑受文件变更影响的测试。
 
+选择过程会追踪静态 import、使用字面量的动态 import、`require.resolve`，以及 Rspack 能解析为目录 Context 的计算式 `import()` 或 `require()` 调用，例如 `import('./locales/' + locale + '.js')`。它还包含 loader 通过 `addDependency`、`addContextDependency` 和 `addMissingDependency` 注册的文件、目录及缺失文件。如果 dependency graph 编译失败，即使启用了 `--passWithNoTests`，选择过程也会失败。
+
+任意运行时路径和文件系统读取不会被自动推断。对于未体现在 build graph 中的输入，可将 [`forceRerunTriggers`](/config/test/force-rerun-triggers) 与 `--changed` 配合使用。
+
 ### 运行变更相关测试
 
 <ApiMeta addedVersion="0.10.0" />
@@ -111,6 +115,8 @@ npx rstest run --changed=origin/main
 ```
 
 当变更文件命中 [`forceRerunTriggers`](/config/test/force-rerun-triggers) 时，Rstest 会运行完整测试套件，而不是只运行相关测试。
+
+本地和已提交的变更都包含被删除的文件。选择过程中，缺失的源码路径会由空的 virtual module 表示，让仍然存在的 import 可以识别受影响的测试。这些占位模块只用于选择过程：执行测试时仍然使用实际文件系统，因此导入已删除的文件仍会失败，除非测试处理了该情况或提供了 mock。被删除的文件命中 `forceRerunTriggers` 时，也会重跑完整测试套件。
 
 开启覆盖率且未配置 [`coverage.changed`](/config/test/coverage#changed) 时，`--changed` 也会将覆盖率报告限制在变更的源文件范围内。如果变更文件命中 [`forceRerunTriggers`](/config/test/force-rerun-triggers)，Rstest 会运行完整测试套件，并生成完整覆盖率报告，除非显式启用了 `coverage.changed`。
 

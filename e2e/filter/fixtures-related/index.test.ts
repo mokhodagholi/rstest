@@ -1,8 +1,13 @@
 import { describe, expect, it } from '@rstest/core';
-import { sayHi } from './src/index';
+import { resolveMessage, sayHi } from './src/index';
+
+const loadMessage = (name: string) =>
+  require(`./src/messages/${name}.json`).message;
 
 describe('index', () => {
   it('should greet index', () => {
     expect(sayHi()).toBe('Hello, index!');
+    expect(loadMessage('required')).toBe('required');
+    expect(resolveMessage()).toMatch(/[/\\]resolved\.json$/);
   });
 });

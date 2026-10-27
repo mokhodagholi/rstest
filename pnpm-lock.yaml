@@ -1172,6 +1172,12 @@ importers:
         specifier: ^6.0.3
         version: 6.0.3
 
+  examples/related-tests:
+    devDependencies:
+      '@rstest/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+
   examples/svelte-rsbuild:
     devDependencies:
       '@rsbuild/core':

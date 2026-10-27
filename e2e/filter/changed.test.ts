@@ -75,6 +75,104 @@ const initGitFixture = async (cwd: string) => {
 };
 
 describe('changed test filtering', () => {
+  it.each(['unstaged', 'staged', 'committed'])(
+    'should select importers of a %s deleted source',
+    async (state) => {
+      const { fixturesTargetPath } = await prepareChangedFixture(
+        `deleted-${state}`,
+      );
+      await initGitFixture(fixturesTargetPath);
+      await rm(join(fixturesTargetPath, 'src/index.ts'));
+      if (state !== 'unstaged') await runGit(fixturesTargetPath, ['add', '-u']);
+      if (state === 'committed') {
+        await runGit(fixturesTargetPath, [
+          '-c',
+          'user.name=rstest',
+          '-c',
+          'user.email=rstest@example.com',
+          'commit',
+          '-m',
+          'delete source',
+        ]);
+      }
+
+      const changed = state === 'committed' ? '--changed=HEAD~1' : '--changed';
+      const { cli, expectExecSuccess } = await runRstestCli({
+        command: 'rstest',
+        args: ['list', '--filesOnly', changed],
+        options: { nodeOptions: { cwd: fixturesTargetPath } },
+      });
+      await expectExecSuccess();
+      expect(cli.stdout.split('\n').filter(Boolean)).toEqual(['index.test.ts']);
+
+      const run = await runRstestCli({
+        command: 'rstest',
+        args: ['run', changed, '--passWithNoTests'],
+        options: { nodeOptions: { cwd: fixturesTargetPath } },
+      });
+      await run.expectExecFailed();
+      expect(run.cli.log).toContain('index.test.ts');
+      expect(run.cli.log).not.toContain('No changed files found');
+      expect(run.cli.log).not.toContain('other.test.ts');
+    },
+  );
+
+  it.each(['staged', 'committed'])(
+    'should run all tests for a %s deleted force rerun trigger',
+    async (state) => {
+      const { fixturesTargetPath } = await prepareChangedFixture(
+        `deleted-trigger-${state}`,
+      );
+      await writeFile(join(fixturesTargetPath, 'package.json'), '{}\n');
+      await initGitFixture(fixturesTargetPath);
+      await rm(join(fixturesTargetPath, 'package.json'));
+      await runGit(fixturesTargetPath, ['add', '-u']);
+      if (state === 'committed') {
+        await runGit(fixturesTargetPath, [
+          '-c',
+          'user.name=rstest',
+          '-c',
+          'user.email=rstest@example.com',
+          'commit',
+          '-m',
+          'delete trigger',
+        ]);
+      }
+      const { cli, expectExecSuccess } = await runRstestCli({
+        command: 'rstest',
+        args: ['run', state === 'committed' ? '--changed=HEAD~1' : '--changed'],
+        options: { nodeOptions: { cwd: fixturesTargetPath } },
+      });
+      await expectExecSuccess();
+      expect(collectRunTestFileLogs(cli.stdout)).toEqual([
+        ' ✓ index.test.ts (1)',
+        ' ✓ other.test.ts (1)',
+      ]);
+      expect(cli.stdout).toContain('matched forceRerunTriggers');
+    },
+  );
+
+  it('should reject an incomplete dependency graph even with passWithNoTests', async () => {
+    const { fixturesTargetPath } = await prepareChangedFixture(
+      'related-compile-error',
+    );
+    await writeFile(
+      join(fixturesTargetPath, 'src/index.ts'),
+      'export const value = ;\n',
+    );
+    const { cli, expectExecFailed } = await runRstestCli({
+      command: 'rstest',
+      args: ['run', '--related', 'src/other.ts', '--passWithNoTests'],
+      options: { nodeOptions: { cwd: fixturesTargetPath } },
+    });
+    await expectExecFailed();
+    expect(cli.stderr).toContain(
+      'Cannot select related tests because compilation failed',
+    );
+    expect(cli.stderr).toContain('src/index.ts');
+    expect(collectRunTestFileLogs(cli.stdout)).toEqual([]);
+  });
+
   it('should reject changed with positional filters', async () => {
     const { cli, expectExecFailed } = await runRstestCli({
       command: 'rstest',

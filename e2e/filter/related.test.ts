@@ -9,6 +9,7 @@ const __dirname = dirname(__filename);
 const relatedFixturePath = join(__dirname, 'fixtures-related');
 const dynamicFixturePath = join(__dirname, '../fixtures/fan-out-dynamic');
 const mixedFixturePath = join(__dirname, 'fixtures-related-mixed');
+const inputFixturePath = join(__dirname, '../../examples/related-tests');
 
 const collectRunTestFileLogs = (stdout: string) =>
   stdout
@@ -17,6 +18,61 @@ const collectRunTestFileLogs = (stdout: string) =>
     .sort();
 
 describe('related test filtering', () => {
+  it.each(['src/messages/required.json', 'src/resolved.json'])(
+    'should select dependencies of computed require and require.resolve: %s',
+    async (source) => {
+      const { cli, expectExecSuccess } = await runRstestCli({
+        command: 'rstest',
+        args: ['run', '--related', source],
+        options: { nodeOptions: { cwd: relatedFixturePath } },
+      });
+      await expectExecSuccess();
+      expect(collectRunTestFileLogs(cli.stdout)).toEqual([
+        ' ✓ index.test.ts (1)',
+      ]);
+    },
+  );
+
+  it.each([
+    ['src/shipping/standard.mjs', ['tests/checkout.test.ts']],
+    ['src/shipping/express.mjs', ['tests/checkout.test.ts']],
+    ['src/shipping/deleted.mjs', ['tests/checkout.test.ts']],
+    ['src/shipping/unrelated.txt', []],
+    ['src/templates/footer.txt', ['tests/receipt.test.ts']],
+    ['src/templates/promotions/shipping.txt', ['tests/receipt.test.ts']],
+    ['src/templates/promotions/new.txt', ['tests/receipt.test.ts']],
+    ['src/templates/branding.txt', ['tests/receipt.test.ts']],
+    ['src/templates/promotions-extra/shipping.txt', []],
+  ])('should select tests for the build input %s', async (source, expected) => {
+    const { cli, expectExecSuccess } = await runRstestCli({
+      command: 'rstest',
+      args: ['list', '--filesOnly', '--related', source],
+      options: { nodeOptions: { cwd: inputFixturePath } },
+    });
+
+    await expectExecSuccess();
+    expect(cli.stdout.split('\n').filter(Boolean)).toEqual(expected);
+  });
+
+  it('should run tests selected through computed imports and loader inputs', async () => {
+    const { cli, expectExecSuccess } = await runRstestCli({
+      command: 'rstest',
+      args: [
+        'run',
+        '--related',
+        'src/shipping/standard.mjs',
+        'src/templates/footer.txt',
+      ],
+      options: { nodeOptions: { cwd: inputFixturePath } },
+    });
+
+    await expectExecSuccess();
+    expect(collectRunTestFileLogs(cli.stdout)).toEqual([
+      ' ✓ tests/checkout.test.ts (2)',
+      ' ✓ tests/receipt.test.ts (1)',
+    ]);
+  });
+
   it('should run only tests related to a leaf source file', async () => {
     const { cli, expectExecSuccess } = await runRstestCli({
       command: 'rstest',
@@ -37,6 +93,26 @@ describe('related test filtering', () => {
         " ✓ index.test.ts (1)",
       ]
     `);
+  });
+
+  it('should preserve dependencies when module concatenation is enabled', async () => {
+    const { cli, expectExecSuccess } = await runRstestCli({
+      command: 'rstest',
+      args: [
+        'list',
+        '--filesOnly',
+        '--related',
+        'src/shared.ts',
+        '--config',
+        'rstest.optimized.config.mts',
+      ],
+      options: { nodeOptions: { cwd: relatedFixturePath } },
+    });
+    await expectExecSuccess();
+    expect(cli.stdout.split('\n').filter(Boolean)).toEqual([
+      'index.test.ts',
+      'other.test.ts',
+    ]);
   });
 
   it('should include both test files for a shared dependency', async () => {

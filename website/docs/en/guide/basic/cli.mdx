@@ -93,6 +93,10 @@ npx rstest list --related src/button.ts --filesOnly
 
 `--related` and `--findRelatedTests` are not supported in watch mode, which already reruns the tests affected by your file changes.
 
+Selection follows static imports, literal dynamic imports, `require.resolve`, and computed `import()` or `require()` calls that Rspack can resolve to a directory context, such as `import('./locales/' + locale + '.js')`. It also includes files, directories, and missing files registered by loaders through `addDependency`, `addContextDependency`, and `addMissingDependency`. If the dependency graph fails to compile, selection fails even when `--passWithNoTests` is enabled.
+
+Arbitrary runtime paths and filesystem reads are not automatically inferred. Use [`forceRerunTriggers`](/config/test/force-rerun-triggers) with `--changed` for inputs that are not represented in the build graph.
+
 ### Run changed tests
 
 <ApiMeta addedVersion="0.10.0" />
@@ -111,6 +115,8 @@ npx rstest run --changed=origin/main
 ```
 
 When a changed file matches [`forceRerunTriggers`](/config/test/force-rerun-triggers), Rstest runs the whole test suite instead of only related tests.
+
+Deleted files are included in local and committed changes. During selection, missing source paths are represented by empty virtual modules so remaining imports can still identify affected tests. These placeholders are used only for selection: test execution sees the actual filesystem, so an import of a deleted file still fails unless the test handles it or provides a mock. A deleted `forceRerunTriggers` match also reruns the full suite.
 
 When coverage is enabled and [`coverage.changed`](/config/test/coverage#changed) is not configured, `--changed` also limits coverage reports to changed source files. If a changed file matches [`forceRerunTriggers`](/config/test/force-rerun-triggers), Rstest runs the whole test suite and reports full coverage unless `coverage.changed` is explicitly enabled.
 

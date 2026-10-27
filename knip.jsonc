@@ -60,6 +60,10 @@
       // Exposed as a Module Federation remote from the Rsbuild config.
       "entry": ["src/test.js"],
     },
+    "examples/related-tests": {
+      // Shipping providers are loaded through a computed import in checkout.ts.
+      "entry": ["src/shipping/*.mjs"],
+    },
     "packages/core": {
       "ignoreDependencies": [
         // rslib.config.ts aliases this import to @vitest/utils' bundled instance.
