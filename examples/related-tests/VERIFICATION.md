@@ -12,10 +12,41 @@ Verified on 2026-10-27 with Node.js 22.21.1 on macOS arm64.
 - Both runners executed the same fixtures and expectations. The unchanged
   application passed all 14 tests in 10 files on both.
 
-The prototype contains the four fixes together. These results do not replace
-testing each future PR independently after splitting its changes.
+The prototype contains the four fixes together. The four fixes were also split
+and verified independently before opening the upstream reports below.
 
-## Results
+## Independent pull requests
+
+Each fix branch starts directly from upstream `main` at `8d799b8`. Its new
+regressions were first run against the unmodified core, then against a rebuilt
+core containing only that fix.
+
+| Fix                                                                                                             | Issue                                                        | Pull request                                               | Passing checks on the independent branch                          |
+| --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------- | ----------------------------------------------------------------- |
+| [Analysis errors](https://github.com/mokhodagholi/rstest/commit/fe86b046b2240950999f7793c6e782c3651385f1)       | [#1999](https://github.com/web-infra-dev/rstest/issues/1999) | [#2000](https://github.com/web-infra-dev/rstest/pull/2000) | 34 end-to-end tests, 58 unit tests, 6 demo checks                 |
+| [Deleted files](https://github.com/mokhodagholi/rstest/commit/77f79ad37023b304daed6e63e70aafca71aebcef)         | [#2001](https://github.com/web-infra-dev/rstest/issues/2001) | [#2002](https://github.com/web-infra-dev/rstest/pull/2002) | 35 end-to-end tests, 59 unit tests, 6 demo checks                 |
+| [Loader inputs](https://github.com/mokhodagholi/rstest/commit/5071887b9c0d41841b64c42d08b1d65b90ea3fe2)         | [#2003](https://github.com/web-infra-dev/rstest/issues/2003) | [#2004](https://github.com/web-infra-dev/rstest/pull/2004) | 37 end-to-end tests, 58 unit tests, 18 loader/mapping demo checks |
+| [Computed dependencies](https://github.com/mokhodagholi/rstest/commit/ab984d89d00c9cf684fd5e60fc6aa4dc14545299) | [#2005](https://github.com/web-infra-dev/rstest/issues/2005) | [#2006](https://github.com/web-infra-dev/rstest/pull/2006) | 53 end-to-end tests, all 1,692 unit tests, 8 demo checks          |
+
+The computed-dependency branch also passed 49 tests with CommonJS output and
+49 with isolation disabled. Browser tests used installed Chrome through the
+repository's `CI=true` test path. One browser execution timed out during the
+broader run and passed on retry; a separate browser run with `--retry 0` passed
+all four tests. The unit suite was rerun with the same Chrome configuration after
+its first run encountered a missing Playwright browser executable.
+
+The new baseline failures were five analysis-error cases, six deletion cases
+plus the Git deletion unit test, seven loader cases, and eight computed/graph
+cases. All passed on their respective independent branches. Each branch also
+passed `check-unused`, type checking, and the repository's full package build,
+formatting, and spelling checks before push. These are local results, not a
+claim that upstream CI has passed or the PRs have been accepted.
+
+To verify a PR, build its branch and pass that checkout's CLI to this demo's
+reproduction command with the corresponding `--group` from the README. The
+default CLI in this demo branch remains the combined prototype.
+
+## Combined prototype results
 
 The reproduction command ran 57 checks for each runner:
 
@@ -110,12 +141,11 @@ check, JSON execution reports, and performance-trace artifacts to the selected
 observed file lists and exit codes. The compared runs used `test-results/upstream`
 and `test-results/prototype`; their scenario IDs and expectations matched exactly.
 
-Tests are limited to Node mode on the stated platform. No browser/watch behavior,
-performance improvement, or isolated-PR validation is claimed by this record.
-The four correctness fixes should be split and tested independently before
-upstream PR publication.
+The original 57-check demo audit covers Node mode on the stated platform. It
+does not measure watch behavior or performance. Browser coverage and independent
+PR validation are listed separately above.
 
-Additional validation passed: all 24 tests in `e2e/filter/related.test.ts` after
+For the original demo change, additional validation passed: all 24 tests in `e2e/filter/related.test.ts` after
 removing the generated catalog output, the documented application test command,
 repository lint/type checking, strict checking of the example config, `check-unused`,
 and frozen offline lockfile validation. The e2e setup rebuilds the catalog, so

@@ -57,12 +57,12 @@ when running an unfixed baseline. Checks have four categories:
 
 Use `--group` to run the reproduction relevant to a focused PR:
 
-| PR                            | Group                               | Behavior under test                                                                                                                |
-| ----------------------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| Computed dependency selection | `computed-imports`                  | Discoverable `import()`, `require()`, and `require.resolve()` contexts retain their dependency edges.                              |
-| Deleted-file selection        | `deleted-files`                     | Staged and committed source/trigger deletions reach selection; a broken deleted import cannot pass as an empty run.                |
-| Loader dependency selection   | `loader-inputs`, `compiled-mapping` | Standard file, directory, and missing dependencies participate in selection, including explicitly declared compiled-output inputs. |
-| Analysis failure handling     | `analysis-errors`                   | An invalid dependency graph returns failure even when the requested source matches no test or only an otherwise valid test.        |
+| PR                                                                                 | Group                               | Behavior under test                                                                                                                |
+| ---------------------------------------------------------------------------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| [Computed dependency selection](https://github.com/web-infra-dev/rstest/pull/2006) | `computed-imports`                  | Discoverable `import()`, `require()`, and `require.resolve()` contexts retain their dependency edges.                              |
+| [Deleted-file selection](https://github.com/web-infra-dev/rstest/pull/2002)        | `deleted-files`                     | Staged and committed source/trigger deletions reach selection; a broken deleted import cannot pass as an empty run.                |
+| [Loader dependency selection](https://github.com/web-infra-dev/rstest/pull/2004)   | `loader-inputs`, `compiled-mapping` | Standard file, directory, and missing dependencies participate in selection, including explicitly declared compiled-output inputs. |
+| [Analysis failure handling](https://github.com/web-infra-dev/rstest/pull/2000)     | `analysis-errors`                   | An invalid dependency graph returns failure even when the requested source matches no test or only an otherwise valid test.        |
 
 For example, from the repository root:
 
