@@ -1,6 +1,8 @@
+import { execFileSync } from 'node:child_process';
+import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { describe, expect, it } from '@rstest/core';
+import { beforeAll, describe, expect, it } from '@rstest/core';
 import { runRstestCli } from '../scripts';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -18,6 +20,14 @@ const collectRunTestFileLogs = (stdout: string) =>
     .sort();
 
 describe('related test filtering', () => {
+  beforeAll(() => {
+    execFileSync(process.execPath, [
+      createRequire(import.meta.url).resolve('typescript/bin/tsc'),
+      '-p',
+      join(inputFixturePath, 'packages/catalog/tsconfig.json'),
+    ]);
+  });
+
   it.each(['src/messages/required.json', 'src/resolved.json'])(
     'should select dependencies of computed require and require.resolve: %s',
     async (source) => {

@@ -3,10 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build:catalog": "tsc -p packages/catalog/tsconfig.json",
     "reproduce": "node scripts/reproduce.mjs",
-    "test": "rstest run"
+    "test": "pnpm build:catalog && rstest run"
   },
   "devDependencies": {
-    "@rstest/core": "workspace:*"
+    "@rstest/core": "workspace:*",
+    "typescript": "^6.0.3"
   }
 }

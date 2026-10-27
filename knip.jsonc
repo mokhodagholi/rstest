@@ -61,8 +61,13 @@
       "entry": ["src/test.js"],
     },
     "examples/related-tests": {
-      // Shipping providers are loaded through a computed import in checkout.ts.
-      "entry": ["src/shipping/*.mjs"],
+      // Providers are loaded at runtime; catalog inputs are compiled before testing.
+      "entry": [
+        "src/shipping/*.{mjs,cjs}",
+        "runtime/*.mjs",
+        "packages/catalog/src/*.ts",
+        "source-inputs-loader.mjs",
+      ],
     },
     "packages/core": {
       "ignoreDependencies": [

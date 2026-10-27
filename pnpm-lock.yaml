@@ -1177,6 +1177,11 @@ importers:
       '@rstest/core':
         specifier: workspace:*
         version: link:../../packages/core
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
+
+  examples/related-tests/src/reservations: {}
 
   examples/svelte-rsbuild:
     devDependencies:
