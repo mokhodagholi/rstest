@@ -1,0 +1,1 @@
+Standard delivery information, not a JavaScript shipping provider.

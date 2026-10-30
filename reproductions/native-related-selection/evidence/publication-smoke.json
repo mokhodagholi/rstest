@@ -1,0 +1,118 @@
+{
+  "scope": "Separate fresh-install publication validation; does not replace the historical research or benchmark artifacts.",
+  "baseCommit": "4bd5684812cf66dcab5b18a397dde26e4b8b2c9b",
+  "javascriptDependencies": {
+    "rsbuild": "2.3.0",
+    "rspack": "2.3.0",
+    "source": "published registry packages selected by the frozen lockfile; no local Rspack JavaScript checkout links"
+  },
+  "nativeBindingSha256": "3a49ef781ccc89266338aadf868a88a3aac59d7eccd25c605c15a6ff7c0fa164",
+  "compiledCore": {
+    "count": 73,
+    "sha256": "64f033717296fdd8a15ea132b17889cd25b218dc1c0ef69bca994509a7f1c006"
+  },
+  "portableSmoke": {
+    "passed": 89,
+    "failed": 0,
+    "suites": [
+      {
+        "suite": "strict-selection",
+        "passed": 33,
+        "failed": 0,
+        "sourceEvidenceSha256": "8ef1fd03d8e12abc39b965438e967a7aa21f7fad4756cdc4aecec2382ee1e716"
+      },
+      {
+        "suite": "native-integration",
+        "passed": 13,
+        "failed": 0,
+        "sourceEvidenceSha256": "47a6c228301b2419e9f0372580065540222d8d7d9e1682ba44b973dc30b4fd7c"
+      },
+      {
+        "suite": "gap-regressions",
+        "passed": 34,
+        "failed": 0,
+        "sourceEvidenceSha256": "e1a9b2507d4a403fed173374aa1ce94fc7327fdeea1e52c1a6bfe9ff06b72c8c"
+      },
+      {
+        "suite": "deleted-symlink",
+        "passed": 9,
+        "failed": 0,
+        "sourceEvidenceSha256": "04e6082077354f763abe9ecde88ef23cd826b3664b75f3796664d7d25f0aabd0"
+      }
+    ],
+    "scope": "Rerun after final formatting and relocation to reproductions/native-related-selection, against the rebuilt committed publication consumer."
+  },
+  "publicationChecks": {
+    "coreUnitTests": {
+      "passed": 48,
+      "failed": 0,
+      "sourceEvidenceSha256": "2db791ff465b20ec4eb4c79d7789c9bc261534864ef1b366121e3a9ce543ae1b"
+    },
+    "nativeE2E": {
+      "passed": 3,
+      "failed": 0,
+      "sourceEvidenceSha256": "2201856a08e4ac58bb9b71d2b6fca643081054272a6ee37520be49e1efd32b5d"
+    },
+    "nativeCommonjsE2E": {
+      "passed": 3,
+      "failed": 0,
+      "sourceEvidenceSha256": "97650896e8d0ec53acd13dac9e15abf64b26e6c1c6f8d9557d996694d9ecf2f8"
+    },
+    "typecheck": {
+      "passed": true,
+      "sourceEvidenceSha256": "a693c70718016d125c1aaca88879ae6719a53ff45d667aa9464a009f0bfb132f"
+    },
+    "unusedCode": {
+      "passed": true,
+      "sourceEvidenceSha256": "daa78c62defd32cfe45e8193016880c25efa2229e923d0018ab14d0f327f4a65"
+    },
+    "broaderExistingSelectionE2E": {
+      "passed": 24,
+      "failed": 6,
+      "scope": "Six coverage instrumentation failures reproduced without selection in both producer-on and producer-off DISABLE_PLUGIN=1 builds; plugin-enabled coverage validation remains outstanding.",
+      "sourceEvidenceSha256": "de39e939392fd6b8f5303d869b42bd267d06408fd160df9706691b32e167752a"
+    },
+    "workspaceBuild": {
+      "passed": true,
+      "sourceEvidenceSha256": "f6bbf74754f90824930889a6de53690756a8c054866db3dffbef3b1c982f10aa"
+    },
+    "nativeThreadsE2E": {
+      "passed": 3,
+      "sourceEvidenceSha256": "5456c3292028b1fb79a9754e612c78b284047a09acbc3586d5b25e973df8ca9a",
+      "failed": 0
+    },
+    "fullLint": {
+      "passed": true,
+      "sourceEvidenceSha256": "3ef70283a77426e539349b1bd41e44a0b1c47c1e9ca29e668ce341bda03acb9a"
+    },
+    "nativeNoIsolateE2E": {
+      "passed": 3,
+      "failed": 0,
+      "sourceEvidenceSha256": "7363bbf38a2246a8f9dbae945b41ad7a9e9f3ad34d403789e797149ceb9a1d6c"
+    }
+  },
+  "exportedScriptHashes": {
+    "benchmarks/commerce/audit-plugin.mjs": "d257fec50b065c6cf8fe44aa9c68af31887c3f99752fe8eadbb23dcde1593cd4",
+    "benchmarks/commerce/benchmark.mjs": "962e8c40808d601c4e45ab597141a614c337947426fab5de3e5ff6905a275b65",
+    "benchmarks/commerce/generate.mjs": "386a5ec7520a53f638f57a2a62ff43772d96df843850fd46f86301d0c7ea4197",
+    "benchmarks/native-closure/audit-plugin.mjs": "d257fec50b065c6cf8fe44aa9c68af31887c3f99752fe8eadbb23dcde1593cd4",
+    "benchmarks/native-closure/benchmark.mjs": "962e8c40808d601c4e45ab597141a614c337947426fab5de3e5ff6905a275b65",
+    "benchmarks/native-closure/generate.mjs": "ef7fadfdb144627b2cae87caa190c2b13832186ef25262c057fd625eaa20541d",
+    "declarations/native-dependencies-loader.mjs": "aaf298db9da2f59b2f5f1d0df4fb8e4b3bbdbfb57d28813d208b252c7df6fb91",
+    "declarations/native-marker-plugin.mjs": "a7449ddd0fff6b0cc0622c90fe0ee5ceaeec752c251a2d7dc11cac1d8a44050f",
+    "declarations/plugin.mjs": "0124b5dad841010029f8ed393e13712324a83779111a6b1a059e6da71163f491",
+    "final-review/verify-deleted-symlink.mjs": "4ffdcfa47733e0724a8ea984a39e3cbaf0f859afeddbe202531a7526f08ae5ad",
+    "final-review/verify-gap-regressions.mjs": "3032399c10f9eff811c0f9834fec5541065457d807fcdeebb68e222e216c3b13",
+    "native-validation/audit-plugin.mjs": "47e611b3255d9671b9054dd6334f0d945d3bd8ae4450f7ae09145c23e9e31667",
+    "native-validation/verify.mjs": "feee3977194bc81826c7f4d882308c139b883eab7ea39e167dc3ecd9beeea57d",
+    "scripts/benchmark-profiles.mjs": "0107e326e022cc3f0a6ee86c11552138405f9cb33b6bf6dc21027a8b64c1bd27",
+    "scripts/verify.mjs": "b150652613591d4ff4c84cbf887b87239597b8e50a012ac2734169e7c4f2a4a7",
+    "validation/verify.mjs": "b0b91fa288e537505a8a0fc803ef61887113a6628f559c0111d7ef00add2baf0"
+  },
+  "performance": "Not rerun on this publication rebuild; historical artifacts and noise qualifications remain separately recorded.",
+  "runtimeNode": "v22.21.1",
+  "buildNode": "v23.6.0 (pnpm embedded runtime)",
+  "coverageControl": "coverage-control.json",
+  "consumerCommit": "6d6c3258403e6e011dade7c72a8b9a16be34ae86",
+  "producerCommit": "037656338b9f5e89ab12c5ab68e947b279456b6c"
+}

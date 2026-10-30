@@ -1,0 +1,52 @@
+{
+  "node": "v22.21.1",
+  "native": {
+    "totalPassed": 89,
+    "suites": [
+      {
+        "suite": "strict-selection",
+        "passed": 33,
+        "failed": 0,
+        "sourceEvidenceSha256": "5e01a2064a87beb84190a92869abb7b4d987f648db9d3f026a8278cd82bc1a01"
+      },
+      {
+        "suite": "native-integration",
+        "passed": 13,
+        "failed": 0,
+        "sourceEvidenceSha256": "9ddb46107f1a890ef3b4ffb1621189f33a9663810b6ee3812df1ab9d2240d238"
+      },
+      {
+        "suite": "gap-regressions",
+        "passed": 34,
+        "failed": 0,
+        "sourceEvidenceSha256": "967ec16b32c32f1c730a4f74a25809cf98193d63ff5f4f4421931589b94d610d"
+      },
+      {
+        "suite": "deleted-symlink",
+        "passed": 9,
+        "failed": 0,
+        "sourceEvidenceSha256": "824c754a176911d0ea2567925e094f275fd2d942bb3a8a05897ba4862f2e8e54"
+      }
+    ],
+    "bindingSha256": "3a49ef781ccc89266338aadf868a88a3aac59d7eccd25c605c15a6ff7c0fa164",
+    "compiledCoreFingerprint": "62104e0d09c2c2cf2ce3c168ec6c6a85677dbc07458244380e42fcfa497edac9"
+  },
+  "api": {
+    "passed": 33,
+    "failed": 0,
+    "sourceEvidenceSha256": "a04624ac00ae00fe0918cbad211f6b6680d75628559e2dc5a109b50f1c5fcfab",
+    "scope": "Clean upstream core plus baseline native binding; public loader APIs only."
+  },
+  "exportedScripts": {
+    "scripts/verify.mjs": "d120f830d331e5645e27b9d706f1208d7550d18f1a7e74c10f5b6ad66500900e",
+    "validation/verify.mjs": "e75d03cac7eb22ca3a213caf25e3a62ff2a32a9d371a983bfce6b9df64a1f83c",
+    "native-validation/verify.mjs": "030506d3fd294371ad0c975e57d4d0e329676c3915c874a2759a568db80c03fe",
+    "native-validation/audit-plugin.mjs": "e69f54aa9165f2465b006c5c6b0c60a76176a747c88bd8e397c72c64d0af8823",
+    "final-review/verify-gap-regressions.mjs": "e181467e0880a579f14eb2d2a733ecaf7c92c43264073ef7262f7d3a6e269c43",
+    "final-review/verify-deleted-symlink.mjs": "b1673039a7f5c39ca5038b5cbd9463a58361fbf2abc627259353ae4d29a618f2",
+    "declarations/plugin.mjs": "078857d7f08588fae69e3b55bbc6c3e8753e6d3bdf1e534019fb40c371c1dad9",
+    "declarations/native-dependencies-loader.mjs": "9beaa0b0a03da6cd321ea076e3cdd914d00d048e5e03630c04015c2ba1c4cf15",
+    "declarations/native-marker-plugin.mjs": "5232e09d71c06a3d2f8240a72db0e55f34d8bf50b8270656db6efef2b68c3ea0"
+  },
+  "note": "Behavioral checks rerun after portable packaging. Performance was not rerun during packaging. Machine-specific raw logs remain outside this public export."
+}

@@ -1,0 +1,44 @@
+{
+  "node": "v22.21.1",
+  "method": "Identical source/config in full-run-only fixtures, no changed/related selection. Published Rspack 2.3.0 compared with custom and upstream-base binaries built using DISABLE_PLUGIN=1.",
+  "sourceEvidenceSha256": "aa1f08f7424f18e61a2e499729f2992daaed17df46edd6c6cb90b18399547f51",
+  "results": [
+    {
+      "id": "published-coverage",
+      "bindingSha256": "efe730d30102234821f19caf82b3284f9bcd5a28174a21405eede4d64354c8f0",
+      "coverageEnabled": true,
+      "exit": 0,
+      "testAssertionPassed": true,
+      "coverageFiles": ["src/price.ts", "src/untested.ts"],
+      "diagnostic": null
+    },
+    {
+      "id": "custom-coverage",
+      "bindingSha256": "3a49ef781ccc89266338aadf868a88a3aac59d7eccd25c605c15a6ff7c0fa164",
+      "coverageEnabled": true,
+      "exit": 1,
+      "testAssertionPassed": true,
+      "coverageFiles": [],
+      "diagnostic": "cannot find magic value"
+    },
+    {
+      "id": "producer-off-base-coverage",
+      "bindingSha256": "24b7a091e664ad3d8b543fd6099f536200d83103dbfbeb7bd2686d17463f44f9",
+      "coverageEnabled": true,
+      "exit": 1,
+      "testAssertionPassed": true,
+      "coverageFiles": [],
+      "diagnostic": "cannot find magic value"
+    },
+    {
+      "id": "custom-no-coverage",
+      "bindingSha256": "3a49ef781ccc89266338aadf868a88a3aac59d7eccd25c605c15a6ff7c0fa164",
+      "coverageEnabled": false,
+      "exit": 0,
+      "testAssertionPassed": true,
+      "coverageFiles": [],
+      "diagnostic": null
+    }
+  ],
+  "remaining": "Build the custom native producer with SWC plugins enabled and validate coverage; the plugin-disabled control is not a clean coverage pass."
+}

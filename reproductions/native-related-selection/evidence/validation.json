@@ -1,0 +1,596 @@
+{
+  "scope": "Recorded local validation on the reviewed artifacts. This compact export omits absolute machine paths, raw logs, native binaries and generated fixtures. The portable demo reruns the included behavioral suites; core unit tests belong to the implementation repository.",
+  "node": "v22.21.1",
+  "coreUnitTests": {
+    "passed": 48,
+    "failed": 0,
+    "sourceEvidenceSha256": "de4fbc49fa8890d87c730516c81d5123bc8e96ffda57d8a2d57323b619bcfa2a",
+    "location": "implementation repository core selection, worker, and Node-option tests"
+  },
+  "final": [
+    {
+      "name": "strict selection",
+      "sourceEvidenceSha256": "77dba995490da93c036adc8ac9c13d24ca42973e0600ae77e88c9627a46e3f0f",
+      "passed": 33,
+      "failed": 0,
+      "checks": [
+        {
+          "id": "native-runtime-reference",
+          "passed": true
+        },
+        {
+          "id": "unused-esm-is-invalid-javascript",
+          "passed": true
+        },
+        {
+          "id": "unused-commonjs-is-invalid-javascript",
+          "passed": true
+        },
+        {
+          "id": "resolved-manifest-is-invalid-javascript",
+          "passed": true
+        },
+        {
+          "id": "full-run-preserves-native-semantics",
+          "passed": true
+        },
+        {
+          "id": "computed-import-provider",
+          "passed": true
+        },
+        {
+          "id": "computed-import-transitive-helper",
+          "passed": true
+        },
+        {
+          "id": "computed-require-provider",
+          "passed": true
+        },
+        {
+          "id": "computed-require-transitive-helper",
+          "passed": true
+        },
+        {
+          "id": "computed-resolve-invalid-target",
+          "passed": true
+        },
+        {
+          "id": "second-provider-group",
+          "passed": true
+        },
+        {
+          "id": "second-provider-transitive-helper",
+          "passed": true
+        },
+        {
+          "id": "related-import-does-not-parse-unused-candidate",
+          "passed": true
+        },
+        {
+          "id": "related-resolve-does-not-parse-target",
+          "passed": true
+        },
+        {
+          "id": "related-tax-provider-excludes-shipping",
+          "passed": true
+        },
+        {
+          "id": "unrelated-static-source",
+          "passed": true
+        },
+        {
+          "id": "source-alias-selects-source",
+          "passed": true
+        },
+        {
+          "id": "source-alias-ignores-compiled-output",
+          "passed": true
+        },
+        {
+          "id": "documentation-related-selects-none",
+          "passed": true
+        },
+        {
+          "id": "wrong-extension-selects-none",
+          "passed": true
+        },
+        {
+          "id": "sibling-directory-selects-none",
+          "passed": true
+        },
+        {
+          "id": "empty-changed-selects-none",
+          "passed": true
+        },
+        {
+          "id": "two-provider-groups-union-excludes-other-tests",
+          "passed": true
+        },
+        {
+          "id": "esm-transitive-policy-full-run-detects-breakage",
+          "passed": true
+        },
+        {
+          "id": "esm-transitive-policy-changed-run-detects-breakage",
+          "passed": true
+        },
+        {
+          "id": "commonjs-transitive-policy-full-run-detects-breakage",
+          "passed": true
+        },
+        {
+          "id": "commonjs-transitive-policy-changed-run-detects-breakage",
+          "passed": true
+        },
+        {
+          "id": "tax-transitive-policy-full-run-detects-breakage",
+          "passed": true
+        },
+        {
+          "id": "tax-transitive-policy-changed-run-detects-breakage",
+          "passed": true
+        },
+        {
+          "id": "source-alias-executes-changed-source",
+          "passed": true
+        },
+        {
+          "id": "documentation-changed-selects-none",
+          "passed": true
+        },
+        {
+          "id": "wrong-extension-changed-selects-none",
+          "passed": true
+        },
+        {
+          "id": "sibling-directory-changed-selects-none",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "native integration",
+      "sourceEvidenceSha256": "d5b447b295eb7aab350d1d84e3ab11a32c53e2917148fdf2ee219fd061dae2a3",
+      "passed": 13,
+      "failed": 0,
+      "checks": [
+        {
+          "id": "actual-native-version-one-call-descriptors",
+          "passed": true
+        },
+        {
+          "id": "native-producer-runtime-emission-unchanged-by-declarations",
+          "passed": true
+        },
+        {
+          "id": "undeclared-computed-selection-rejects-before-tests",
+          "passed": true
+        },
+        {
+          "id": "real-parent-traversal-loads-outside-pattern-directory",
+          "passed": true
+        },
+        {
+          "id": "outside-pattern-target-really-affects-checkout",
+          "passed": true
+        },
+        {
+          "id": "traversal-selection-rejects-instead-of-empty-success",
+          "passed": true
+        },
+        {
+          "id": "literal-resolve-selects-from-native-descriptor-without-declaration",
+          "passed": true
+        },
+        {
+          "id": "literal-resolve-invalid-target-is-not-parsed-or-executed",
+          "passed": true
+        },
+        {
+          "id": "literal-resolve-has-no-unrelated-fallback",
+          "passed": true
+        },
+        {
+          "id": "concatenation-retains-native-descriptor-and-explicit-closure",
+          "passed": true
+        },
+        {
+          "id": "concatenated-declaration-selects-exact-owner",
+          "passed": true
+        },
+        {
+          "id": "concatenated-declaration-has-no-unrelated-fallback",
+          "passed": true
+        },
+        {
+          "id": "concatenated-runtime-assets-unchanged-by-declarations",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "final gap regressions",
+      "sourceEvidenceSha256": "5a758dd75dfe10ca04ccf6e46a0c245d5384d36262a4f497498e926a2820ea89",
+      "passed": 34,
+      "failed": 0,
+      "checks": [
+        {
+          "id": "create-require/full-runtime-before",
+          "passed": true
+        },
+        {
+          "id": "create-require/default-unsupported-rejects",
+          "passed": true
+        },
+        {
+          "id": "create-require/complete-declaration-exact",
+          "passed": true
+        },
+        {
+          "id": "create-require/declared-unrelated-empty",
+          "passed": true
+        },
+        {
+          "id": "create-require/mutation-full-detects",
+          "passed": true
+        },
+        {
+          "id": "create-require/mutation-automatic-rejects",
+          "passed": true
+        },
+        {
+          "id": "create-require/mutation-declared-exact-failure",
+          "passed": true
+        },
+        {
+          "id": "cjs-var/full-runtime-before",
+          "passed": true
+        },
+        {
+          "id": "cjs-var/automatic-exact",
+          "passed": true
+        },
+        {
+          "id": "cjs-var/no-redeclaration-control",
+          "passed": true
+        },
+        {
+          "id": "cjs-var/complete-declaration-exact",
+          "passed": true
+        },
+        {
+          "id": "cjs-var/unrelated-empty",
+          "passed": true
+        },
+        {
+          "id": "cjs-var/mutation-full-detects",
+          "passed": true
+        },
+        {
+          "id": "cjs-var/mutation-automatic-exact-failure",
+          "passed": true
+        },
+        {
+          "id": "cjs-var/mutation-declared-exact-failure",
+          "passed": true
+        },
+        {
+          "id": "hooks/pool-hyphenated/runtime-accepted",
+          "passed": true
+        },
+        {
+          "id": "hooks/pool-hyphenated/rejects-custom-hooks",
+          "passed": true
+        },
+        {
+          "id": "hooks/pool-hyphenated/declared-exact",
+          "passed": true
+        },
+        {
+          "id": "hooks/pool-underscored/runtime-accepted",
+          "passed": true
+        },
+        {
+          "id": "hooks/pool-underscored/rejects-custom-hooks",
+          "passed": true
+        },
+        {
+          "id": "hooks/pool-underscored/declared-exact",
+          "passed": true
+        },
+        {
+          "id": "hooks/pool-underscored-equals/runtime-accepted",
+          "passed": true
+        },
+        {
+          "id": "hooks/pool-underscored-equals/rejects-custom-hooks",
+          "passed": true
+        },
+        {
+          "id": "hooks/pool-underscored-equals/declared-exact",
+          "passed": true
+        },
+        {
+          "id": "hooks/env-underscored-quoted/runtime-accepted",
+          "passed": true
+        },
+        {
+          "id": "hooks/env-underscored-quoted/rejects-custom-hooks",
+          "passed": true
+        },
+        {
+          "id": "hooks/env-underscored-quoted/declared-exact",
+          "passed": true
+        },
+        {
+          "id": "hooks/pool-env-file/runtime-accepted",
+          "passed": true
+        },
+        {
+          "id": "hooks/pool-env-file/rejects-custom-hooks",
+          "passed": true
+        },
+        {
+          "id": "hooks/pool-env-file/declared-exact",
+          "passed": true
+        },
+        {
+          "id": "hooks/mutation-full-detects",
+          "passed": true
+        },
+        {
+          "id": "hooks/mutation-declared-exact-failure",
+          "passed": true
+        },
+        {
+          "id": "artifacts-unchanged",
+          "passed": true
+        },
+        {
+          "id": "audits-loaded-requested-native-binding",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "deleted target through symlink",
+      "sourceEvidenceSha256": "3693cb55b0442f70361cd65a0956500d23da2902fa69371bf9139d1d5059b9e8",
+      "passed": 9,
+      "failed": 0,
+      "checks": [
+        {
+          "id": "full-runtime-before-passes",
+          "passed": true
+        },
+        {
+          "id": "physical-path-before-selects-exact-owner",
+          "passed": true
+        },
+        {
+          "id": "unrelated-control-is-empty",
+          "passed": true
+        },
+        {
+          "id": "full-runtime-after-detects-deletion",
+          "passed": true
+        },
+        {
+          "id": "identical-physical-path-after-selects-exact-owner",
+          "passed": true
+        },
+        {
+          "id": "before-and-after-use-identical-related-command",
+          "passed": true
+        },
+        {
+          "id": "related-run-after-detects-deletion-without-unrelated-test",
+          "passed": true
+        },
+        {
+          "id": "artifacts-unchanged",
+          "passed": true
+        },
+        {
+          "id": "audits-confirm-loaded-native-artifact",
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "before": [
+    {
+      "name": "before gap fixes",
+      "sourceEvidenceSha256": "3d6b1d57af4ee9d57f0181cfe68a7a6e77ae3e672942a477ab53ed2e7f8799d1",
+      "passed": 26,
+      "failed": 8,
+      "checks": [
+        {
+          "id": "create-require/full-runtime-before",
+          "passed": true
+        },
+        {
+          "id": "create-require/default-unsupported-rejects",
+          "passed": false
+        },
+        {
+          "id": "create-require/complete-declaration-exact",
+          "passed": true
+        },
+        {
+          "id": "create-require/declared-unrelated-empty",
+          "passed": true
+        },
+        {
+          "id": "create-require/mutation-full-detects",
+          "passed": true
+        },
+        {
+          "id": "create-require/mutation-automatic-rejects",
+          "passed": false
+        },
+        {
+          "id": "create-require/mutation-declared-exact-failure",
+          "passed": true
+        },
+        {
+          "id": "cjs-var/full-runtime-before",
+          "passed": true
+        },
+        {
+          "id": "cjs-var/automatic-exact",
+          "passed": false
+        },
+        {
+          "id": "cjs-var/no-redeclaration-control",
+          "passed": true
+        },
+        {
+          "id": "cjs-var/complete-declaration-exact",
+          "passed": true
+        },
+        {
+          "id": "cjs-var/unrelated-empty",
+          "passed": true
+        },
+        {
+          "id": "cjs-var/mutation-full-detects",
+          "passed": true
+        },
+        {
+          "id": "cjs-var/mutation-automatic-exact-failure",
+          "passed": false
+        },
+        {
+          "id": "cjs-var/mutation-declared-exact-failure",
+          "passed": true
+        },
+        {
+          "id": "hooks/pool-hyphenated/runtime-accepted",
+          "passed": true
+        },
+        {
+          "id": "hooks/pool-hyphenated/rejects-custom-hooks",
+          "passed": true
+        },
+        {
+          "id": "hooks/pool-hyphenated/declared-exact",
+          "passed": true
+        },
+        {
+          "id": "hooks/pool-underscored/runtime-accepted",
+          "passed": true
+        },
+        {
+          "id": "hooks/pool-underscored/rejects-custom-hooks",
+          "passed": false
+        },
+        {
+          "id": "hooks/pool-underscored/declared-exact",
+          "passed": true
+        },
+        {
+          "id": "hooks/pool-underscored-equals/runtime-accepted",
+          "passed": true
+        },
+        {
+          "id": "hooks/pool-underscored-equals/rejects-custom-hooks",
+          "passed": false
+        },
+        {
+          "id": "hooks/pool-underscored-equals/declared-exact",
+          "passed": true
+        },
+        {
+          "id": "hooks/env-underscored-quoted/runtime-accepted",
+          "passed": true
+        },
+        {
+          "id": "hooks/env-underscored-quoted/rejects-custom-hooks",
+          "passed": false
+        },
+        {
+          "id": "hooks/env-underscored-quoted/declared-exact",
+          "passed": true
+        },
+        {
+          "id": "hooks/pool-env-file/runtime-accepted",
+          "passed": true
+        },
+        {
+          "id": "hooks/pool-env-file/rejects-custom-hooks",
+          "passed": false
+        },
+        {
+          "id": "hooks/pool-env-file/declared-exact",
+          "passed": true
+        },
+        {
+          "id": "hooks/mutation-full-detects",
+          "passed": true
+        },
+        {
+          "id": "hooks/mutation-declared-exact-failure",
+          "passed": true
+        },
+        {
+          "id": "artifacts-unchanged",
+          "passed": true
+        },
+        {
+          "id": "audits-loaded-requested-native-binding",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "before symlink deletion fix",
+      "sourceEvidenceSha256": "3a83341d822e962c3c06b3bc71cffd340f9228aa6be06560d9d48de5ebd9a347",
+      "passed": 7,
+      "failed": 2,
+      "checks": [
+        {
+          "id": "full-runtime-before-passes",
+          "passed": true
+        },
+        {
+          "id": "physical-path-before-selects-exact-owner",
+          "passed": true
+        },
+        {
+          "id": "unrelated-control-is-empty",
+          "passed": true
+        },
+        {
+          "id": "full-runtime-after-detects-deletion",
+          "passed": true
+        },
+        {
+          "id": "identical-physical-path-after-selects-exact-owner",
+          "passed": false
+        },
+        {
+          "id": "before-and-after-use-identical-related-command",
+          "passed": true
+        },
+        {
+          "id": "related-run-after-detects-deletion-without-unrelated-test",
+          "passed": false
+        },
+        {
+          "id": "artifacts-unchanged",
+          "passed": true
+        },
+        {
+          "id": "audits-confirm-loaded-native-artifact",
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "workspaceChecks": {
+    "typeScriptDiagnostics": 218,
+    "sameAsBaseline": true,
+    "cleanPass": false,
+    "unusedCode": "existing baseline failures unchanged"
+  }
+}

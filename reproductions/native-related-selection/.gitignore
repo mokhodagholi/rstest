@@ -1,0 +1,9 @@
+node_modules/
+test-results/
+results/
+.work-*/
+**/.work-*/
+*.log
+.DS_Store
+!validation/fixture/packages/catalog/dist/
+!validation/fixture/packages/catalog/dist/price.mjs

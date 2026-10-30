@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "importers": {
+    "src/shipping/checkout.mjs": [
+      "src/shipping/providers/standard.mjs",
+      "src/shipping/providers/experimental.mjs",
+      "src/policies/shipping.mjs"
+    ],
+    "tests/legacy-shipping.test.ts": [
+      "src/shipping/legacy/standard.cjs",
+      "src/shipping/legacy/experimental.cjs",
+      "src/policies/legacy-shipping.cjs"
+    ],
+    "tests/provider-location.test.ts": ["src/shipping/manifests/standard.cjs"],
+    "src/taxes/quote.mjs": [
+      "src/taxes/regions/domestic.mjs",
+      "src/taxes/regions/experimental.mjs",
+      "src/policies/tax.mjs"
+    ]
+  }
+}

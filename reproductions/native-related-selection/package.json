@@ -1,0 +1,12 @@
+{
+  "name": "@examples/native-related-selection",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "benchmark:profiles": "node scripts/benchmark-profiles.mjs",
+    "verify": "node scripts/verify.mjs"
+  },
+  "engines": {
+    "node": ">=22.21.1"
+  }
+}

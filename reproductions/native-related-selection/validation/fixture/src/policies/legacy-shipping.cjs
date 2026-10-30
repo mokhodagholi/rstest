@@ -1,0 +1,1 @@
+exports.standardShippingFee = 500;

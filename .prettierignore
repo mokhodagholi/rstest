@@ -11,3 +11,9 @@ LICENSE.md
 
 # ignore pnpm-lock
 pnpm-lock.yaml
+
+# Invalid JavaScript is the runtime input of native-selection regressions.
+reproductions/native-related-selection/validation/fixture/src/shipping/legacy/experimental.cjs
+reproductions/native-related-selection/validation/fixture/src/shipping/manifests/standard.cjs
+reproductions/native-related-selection/validation/fixture/src/shipping/providers/experimental.mjs
+reproductions/native-related-selection/validation/fixture/src/taxes/regions/experimental.mjs
